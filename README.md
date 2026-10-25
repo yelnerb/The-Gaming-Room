@@ -1,2 +1,20 @@
 # The-Gaming-Room
-small software design document for CS-230
+A small software design document for CS-230
+
+## Brief Summary of the client (The Gaming Room) and their software requirements:
+The client was The Gaming Room, and they already had an existing mobile game called Draw It or Lose It that was built for Android. They wanted to take that game and expand it into a web-based, multiplatform application so people could play together across different devices like iPhones, Android phones, tablets, and regular computer browsers. Their main requirements were making sure players on different operating systems could join the same games without issues, keeping the game fast and synchronized, and setting up a central server system to track all the games, teams, and players without running into ID conflicts or data errors.
+
+## What I believe I did particularly well in developing this document: 
+I think I did a really good job breaking down the system architecture and explaining why certain design patterns fit the project. Specifically, walking through the Singleton pattern for the GameService class. I explained why having only one instance of the game service running in memory is so important for keeping unique IDs straight and stopping duplicate games from being created. The UML diagrams and class structures also came together nicely, making it easy to see how the base Entity class connects down into Game, Team, and Player.
+
+## What I found helpful about working through a design document when developing code:
+Working through the design document alongside the code back in Project 1 was super helpful because it gave me a direct blueprint to follow. When I was building out the Java files like Entity, Game, Team, Player, and GameService, I didn’t have to guess what variables or methods were needed because the domain model had them mapped out already. It made setting up the inheritance with Entity and implementing the Singleton pattern in GameService a lot easier to visualize. Having that structure on paper kept me organized and helped me understand how all the classes connected instead of trying to figure it out from scratch in the code.
+
+## What I would personally revise within my own work:
+If I could go back and revise one area, I would expand on how the system handles dropped connections and player reconnects. Since Draw It or Lose It relies on fast-paced rounds and live WebSockets, mobile players on unstable cellular data will inevitably lose service from time to time. I would love to add a dedicated reconnection protocol that saves a player's session token and seamlessly plugs them back into their active team and current round without resetting their score or interrupting the other players. I also would have liked to include a testing section detailing automated unit tests with JUnit to verify thread safety and concurrent player limits before going live.
+
+## How I interpreted the user's needs and implemented them in my software design:
+I looked at what the players actually care about, which is being able to quickly jump into a fun game with friends no matter what phone, tablet, or computer they are on, without lag or weird bugs. I worked that into the design by focusing on a browser-friendly, cross-platform approach and making sure the server handles game logic centrally so everyone sees the exact same game state in real time. Keeping the user in mind is super important because code can be completely bug-free on the backend, but if the game is confusing, laggy, or hard for friends to join together, nobody is going to want to play it.
+
+## How I approached the software design and what I would do in the future:
+I approached the design by breaking the client’s big goals down into smaller, manageable pieces using object-oriented principles. That meant figuring out the core requirements first, sketching out class relationships with UML, and choosing patterns like Singleton to keep things organized and easy to maintain. In the future, I want to use an API-first mindset where I plan out exact data formats and endpoints before building the code. I would also build quick proof-of-concept tests early in the design stage to check things like network lag and server response before committing to a final architecture.
